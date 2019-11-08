@@ -1,4 +1,4 @@
-﻿using Leaf.xNet;
+﻿using Better_xNet;
 using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
@@ -69,15 +69,10 @@ namespace UkrainianDuty2019
 
             // получим курс евро к доллару
             var httpRequest_ = new HttpRequest();
-
-            httpRequest_.AddHeader(HttpHeader.Accept, "application/json, text/javascript, */*; q=0.01");
-            httpRequest_.AddHeader(HttpHeader.ContentType, "application/x-www-form-urlencoded; charset=UTF-8");
-            httpRequest_.AddXmlHttpRequestHeader();
-            httpRequest_.UserAgentRandomize();
-            httpRequest_.ConnectTimeout = 30000;
+            //httpRequest_.ConnectTimeout = 10000;
 
             // получим ответ от ПриватБанка
-            string content_ = httpRequest_.Get("https://api.exchangeratesapi.io/latest?base=USD").ToString();
+            string content_ = httpRequest_.Send(HttpMethod.GET, new Uri("https://api.exchangeratesapi.io/latest?base=USD")).ToString();
 
             // получили курс
             string kurs_ = regex_("EUR\":(.*),\"MYR", content_, 1);
@@ -104,20 +99,14 @@ namespace UkrainianDuty2019
 
             // конвертация из евро в гривны
             var httpRequest = new HttpRequest();
-
-            httpRequest.AddHeader(HttpHeader.Accept, "application/json, text/javascript, */*; q=0.01");
-            httpRequest.AddHeader(HttpHeader.ContentType, "application/x-www-form-urlencoded; charset=UTF-8");
-            httpRequest.AddXmlHttpRequestHeader();
-            httpRequest.UserAgentRandomize();
-            httpRequest.ConnectTimeout = 30000;
+            httpRequest.ConnectTimeout = 10000;
 
             // получим текущую дату минус один день
             DateTime date = DateTime.Now.AddDays(-1);
             string date_ = Convert.ToDateTime(date).ToString("yyyyMMdd");
 
             // получим ответ от ПриватБанка
-            string content = httpRequest.Get("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=EUR&date=" + date_ + "").ToString();
-
+            string content = httpRequest.Send(HttpMethod.GET, new Uri("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=EUR&date=" + date_ + "")).ToString();
             // получим курс евро относительно гривны
             string kurs = regex_("<rate>(.*)</rate>", content, 1);
 
@@ -141,26 +130,21 @@ namespace UkrainianDuty2019
             in_eur.Text = fullPrice_.ToString();
 
             // конвертация из евро в гривны
+            // конвертация из евро в гривны
             var httpRequest = new HttpRequest();
-
-            httpRequest.AddHeader(HttpHeader.Accept, "application/json, text/javascript, */*; q=0.01");
-            httpRequest.AddHeader(HttpHeader.ContentType, "application/x-www-form-urlencoded; charset=UTF-8");
-            httpRequest.AddXmlHttpRequestHeader();
-            httpRequest.UserAgentRandomize();
-            httpRequest.ConnectTimeout = 30000;
+            httpRequest.ConnectTimeout = 10000;
 
             // получим текущую дату минус один день
             DateTime date = DateTime.Now.AddDays(-1);
             string date_ = Convert.ToDateTime(date).ToString("yyyyMMdd");
 
             // получим ответ от ПриватБанка
-            string content = httpRequest.Get("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=EUR&date=" + date_ + "").ToString();
-
+            string content = httpRequest.Send(HttpMethod.GET, new Uri("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=EUR&date=" + date_ + "")).ToString();
             // получим курс евро относительно гривны
             string kurs = regex_("<rate>(.*)</rate>", content, 1);
 
             double in_uah_ = fullPrice_ * ConvertToDouble(kurs);
-            in_uah.Text =  in_uah_.ToString();
+            in_uah.Text = in_uah_.ToString();
         }
     }
 }
