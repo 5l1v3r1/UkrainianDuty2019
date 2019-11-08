@@ -111,13 +111,13 @@ namespace UkrainianDuty2019
 
             // получим текущую дату минус один день
             DateTime date = DateTime.Now.AddDays(-1);
-            string date_ = date.ToShortDateString();
+            string date_ = Convert.ToDateTime(date).ToString("yyyyMMdd");
 
             // получим ответ от ПриватБанка
-            string content = httpRequest.Get("https://api.privatbank.ua/p24api/exchange_rates?json&date=" + date_ + "").ToString();
+            string content = httpRequest.Get("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=EUR&date=" + date_ + "").ToString();
 
             // получим курс евро относительно гривны
-            string kurs = regex_("UAH\",\"currency\":\"EUR\",\"saleRateNB\":(.*),\"purchaseRateNB\":(.*),\"saleRate\":(.*),\"purchaseRate\":(.*)},{\"baseCurrency\":\"UAH\",\"currency\":\"GBP", content, 1);
+            string kurs = regex_("<rate>(.*)</rate>", content, 1);
 
             double in_uah_ = fullPrice_ * ConvertToDouble(kurs);
             in_uah.Text = in_uah_.ToString();
@@ -148,13 +148,13 @@ namespace UkrainianDuty2019
 
             // получим текущую дату минус один день
             DateTime date = DateTime.Now.AddDays(-1);
-            string date_ = date.ToShortDateString();
+            string date_ = Convert.ToDateTime(date).ToString("yyyyMMdd");
 
             // получим ответ от ПриватБанка
-            string content = httpRequest.Get("https://api.privatbank.ua/p24api/exchange_rates?json&date=" + date_ + "").ToString();
+            string content = httpRequest.Get("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=EUR&date=" + date_ + "").ToString();
 
             // получим курс евро относительно гривны
-            string kurs = regex_("UAH\",\"currency\":\"EUR\",\"saleRateNB\":(.*),\"purchaseRateNB\":(.*),\"saleRate\":(.*),\"purchaseRate\":(.*)},{\"baseCurrency\":\"UAH\",\"currency\":\"GBP", content, 1);
+            string kurs = regex_("<rate>(.*)</rate>", content, 1);
 
             double in_uah_ = fullPrice_ * ConvertToDouble(kurs);
             in_uah.Text =  in_uah_.ToString();
