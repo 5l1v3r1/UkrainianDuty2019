@@ -74,6 +74,7 @@ namespace UkrainianDuty2019
             httpRequest_.AddHeader(HttpHeader.ContentType, "application/x-www-form-urlencoded; charset=UTF-8");
             httpRequest_.AddXmlHttpRequestHeader();
             httpRequest_.UserAgentRandomize();
+            httpRequest_.ConnectTimeout = 30000;
 
             // получим ответ от ПриватБанка
             string content_ = httpRequest_.Get("https://api.exchangeratesapi.io/latest?base=USD").ToString();
@@ -108,6 +109,7 @@ namespace UkrainianDuty2019
             httpRequest.AddHeader(HttpHeader.ContentType, "application/x-www-form-urlencoded; charset=UTF-8");
             httpRequest.AddXmlHttpRequestHeader();
             httpRequest.UserAgentRandomize();
+            httpRequest.ConnectTimeout = 30000;
 
             // получим текущую дату минус один день
             DateTime date = DateTime.Now.AddDays(-1);
@@ -145,6 +147,7 @@ namespace UkrainianDuty2019
             httpRequest.AddHeader(HttpHeader.ContentType, "application/x-www-form-urlencoded; charset=UTF-8");
             httpRequest.AddXmlHttpRequestHeader();
             httpRequest.UserAgentRandomize();
+            httpRequest.ConnectTimeout = 30000;
 
             // получим текущую дату минус один день
             DateTime date = DateTime.Now.AddDays(-1);
