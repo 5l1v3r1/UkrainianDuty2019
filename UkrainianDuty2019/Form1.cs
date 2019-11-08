@@ -69,7 +69,7 @@ namespace UkrainianDuty2019
 
             // получим курс евро к доллару
             var httpRequest_ = new HttpRequest();
-            //httpRequest_.ConnectTimeout = 10000;
+            httpRequest_.ConnectTimeout = 15000;
 
             // получим ответ от ПриватБанка
             string content_ = httpRequest_.Send(HttpMethod.GET, new Uri("https://api.exchangeratesapi.io/latest?base=USD")).ToString();
@@ -99,7 +99,7 @@ namespace UkrainianDuty2019
 
             // конвертация из евро в гривны
             var httpRequest = new HttpRequest();
-            httpRequest.ConnectTimeout = 10000;
+            httpRequest.ConnectTimeout = 15000;
 
             // получим текущую дату минус один день
             DateTime date = DateTime.Now.AddDays(-1);
@@ -132,7 +132,7 @@ namespace UkrainianDuty2019
             // конвертация из евро в гривны
             // конвертация из евро в гривны
             var httpRequest = new HttpRequest();
-            httpRequest.ConnectTimeout = 10000;
+            httpRequest.ConnectTimeout = 15000;
 
             // получим текущую дату минус один день
             DateTime date = DateTime.Now.AddDays(-1);
