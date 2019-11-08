@@ -31,14 +31,23 @@
             this.label1 = new System.Windows.Forms.Label();
             this.priceProduct = new System.Windows.Forms.TextBox();
             this.Calculate = new System.Windows.Forms.Button();
-            this.fullPrice = new System.Windows.Forms.TextBox();
+            this.in_eur = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.in_uah = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.CalculateUsd = new System.Windows.Forms.Button();
+            this.priceProductUsd = new System.Windows.Forms.TextBox();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(152, 69);
+            this.label1.Location = new System.Drawing.Point(33, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(97, 13);
             this.label1.TabIndex = 0;
@@ -46,14 +55,14 @@
             // 
             // priceProduct
             // 
-            this.priceProduct.Location = new System.Drawing.Point(155, 85);
+            this.priceProduct.Location = new System.Drawing.Point(36, 40);
             this.priceProduct.Name = "priceProduct";
             this.priceProduct.Size = new System.Drawing.Size(100, 20);
             this.priceProduct.TabIndex = 1;
             // 
             // Calculate
             // 
-            this.Calculate.Location = new System.Drawing.Point(155, 111);
+            this.Calculate.Location = new System.Drawing.Point(36, 66);
             this.Calculate.Name = "Calculate";
             this.Calculate.Size = new System.Drawing.Size(75, 23);
             this.Calculate.TabIndex = 2;
@@ -61,34 +70,105 @@
             this.Calculate.UseVisualStyleBackColor = true;
             this.Calculate.Click += new System.EventHandler(this.Calculate_Click);
             // 
-            // fullPrice
+            // in_eur
             // 
-            this.fullPrice.Location = new System.Drawing.Point(155, 178);
-            this.fullPrice.Name = "fullPrice";
-            this.fullPrice.Size = new System.Drawing.Size(100, 20);
-            this.fullPrice.TabIndex = 3;
+            this.in_eur.Location = new System.Drawing.Point(184, 166);
+            this.in_eur.Name = "in_eur";
+            this.in_eur.Size = new System.Drawing.Size(100, 20);
+            this.in_eur.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(152, 162);
+            this.label2.Location = new System.Drawing.Point(221, 150);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 13);
+            this.label2.Size = new System.Drawing.Size(30, 13);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Full price";
+            this.label2.Text = "EUR";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(221, 199);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(30, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "UAH";
+            // 
+            // in_uah
+            // 
+            this.in_uah.Location = new System.Drawing.Point(184, 215);
+            this.in_uah.Name = "in_uah";
+            this.in_uah.Size = new System.Drawing.Size(100, 20);
+            this.in_uah.TabIndex = 3;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.Calculate);
+            this.groupBox1.Controls.Add(this.priceProduct);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(220, 130);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "EUR";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.CalculateUsd);
+            this.groupBox2.Controls.Add(this.priceProductUsd);
+            this.groupBox2.Location = new System.Drawing.Point(238, 12);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(220, 130);
+            this.groupBox2.TabIndex = 4;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "USD";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(33, 24);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(97, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Enter price product";
+            // 
+            // CalculateUsd
+            // 
+            this.CalculateUsd.Location = new System.Drawing.Point(36, 66);
+            this.CalculateUsd.Name = "CalculateUsd";
+            this.CalculateUsd.Size = new System.Drawing.Size(75, 23);
+            this.CalculateUsd.TabIndex = 2;
+            this.CalculateUsd.Text = "Calculate";
+            this.CalculateUsd.UseVisualStyleBackColor = true;
+            this.CalculateUsd.Click += new System.EventHandler(this.CalculateUsd_Click);
+            // 
+            // priceProductUsd
+            // 
+            this.priceProductUsd.Location = new System.Drawing.Point(36, 40);
+            this.priceProductUsd.Name = "priceProductUsd";
+            this.priceProductUsd.Size = new System.Drawing.Size(100, 20);
+            this.priceProductUsd.TabIndex = 1;
             // 
             // App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(404, 285);
-            this.Controls.Add(this.fullPrice);
-            this.Controls.Add(this.Calculate);
-            this.Controls.Add(this.priceProduct);
+            this.ClientSize = new System.Drawing.Size(468, 264);
+            this.Controls.Add(this.in_eur);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.in_uah);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label3);
             this.Name = "App";
-            this.Text = "Как же теперь не любить Украину?";
+            this.Text = "Love Ukraine";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -99,8 +179,15 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox priceProduct;
         private System.Windows.Forms.Button Calculate;
-        private System.Windows.Forms.TextBox fullPrice;
+        private System.Windows.Forms.TextBox in_eur;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox in_uah;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button CalculateUsd;
+        private System.Windows.Forms.TextBox priceProductUsd;
     }
 }
 
