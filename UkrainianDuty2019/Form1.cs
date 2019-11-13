@@ -71,7 +71,7 @@ namespace UkrainianDuty2019
             var httpRequest_ = new HttpRequest();
             httpRequest_.ConnectTimeout = 15000;
 
-            // получим ответ от ПриватБанка
+            // получим ответ от api.exchangeratesapi.io
             string content_ = httpRequest_.Send(HttpMethod.GET, new Uri("https://api.exchangeratesapi.io/latest?base=USD")).ToString();
 
             // получили курс
@@ -105,7 +105,57 @@ namespace UkrainianDuty2019
             DateTime date = DateTime.Now.AddDays(-1);
             string date_ = Convert.ToDateTime(date).ToString("yyyyMMdd");
 
-            // получим ответ от ПриватБанка
+            // получим ответ от bank.gov.ua
+            string content = httpRequest.Send(HttpMethod.GET, new Uri("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=EUR&date=" + date_ + "")).ToString();
+            // получим курс евро относительно гривны
+            string kurs = regex_("<rate>(.*)</rate>", content, 1);
+
+            double in_uah_ = fullPrice_ * ConvertToDouble(kurs);
+            in_uah.Text = in_uah_.ToString();
+        }
+        private void CalculateCNY_Click(object sender, EventArgs e)
+        {
+            priceProduct_ = Int32.Parse(priceProductCNY.Text);
+
+            // получим курс евро к доллару
+            var httpRequest_ = new HttpRequest();
+            httpRequest_.ConnectTimeout = 15000;
+
+            // получим ответ от api.exchangeratesapi.io
+            string content_ = httpRequest_.Send(HttpMethod.GET, new Uri("https://api.exchangeratesapi.io/latest?base=CNY")).ToString();
+
+            // получили курс
+            string kurs_ = regex_("EUR\":(.*),\"MYR", content_, 1);
+
+            // переведем доллары в евро
+            double kurs_in_double = priceProduct_ * ConvertToDouble(kurs_);
+            priceProduct_ = (int)kurs_in_double;
+
+            // TODO: сделано для физ.лица
+            // добавить для юридического
+
+            // 20% НДС
+            // 10% Пошлина
+            if (priceProduct_ >= 100)
+            {
+                fullPrice_ = ((priceProduct_ / 100) * 10) + ((priceProduct_ / 100) * 20) + priceProduct_;
+            }
+            else
+            {
+                fullPrice_ = priceProduct_;
+            }
+
+            in_eur.Text = fullPrice_.ToString();
+
+            // конвертация из евро в гривны
+            var httpRequest = new HttpRequest();
+            httpRequest.ConnectTimeout = 15000;
+
+            // получим текущую дату минус один день
+            DateTime date = DateTime.Now.AddDays(-1);
+            string date_ = Convert.ToDateTime(date).ToString("yyyyMMdd");
+
+            // получим ответ от bank.gov.ua
             string content = httpRequest.Send(HttpMethod.GET, new Uri("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=EUR&date=" + date_ + "")).ToString();
             // получим курс евро относительно гривны
             string kurs = regex_("<rate>(.*)</rate>", content, 1);
@@ -138,7 +188,7 @@ namespace UkrainianDuty2019
             DateTime date = DateTime.Now.AddDays(-1);
             string date_ = Convert.ToDateTime(date).ToString("yyyyMMdd");
 
-            // получим ответ от ПриватБанка
+            // получим ответ от bank.gov.ua
             string content = httpRequest.Send(HttpMethod.GET, new Uri("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=EUR&date=" + date_ + "")).ToString();
             // получим курс евро относительно гривны
             string kurs = regex_("<rate>(.*)</rate>", content, 1);
