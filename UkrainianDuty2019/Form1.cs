@@ -196,5 +196,29 @@ namespace UkrainianDuty2019
             double in_uah_ = fullPrice_ * ConvertToDouble(kurs);
             in_uah.Text = in_uah_.ToString();
         }
+        private void Recalc_Click(object sender, EventArgs e)
+        {
+            priceProduct_ = Int32.Parse(in_eur.Text);
+            fullPrice_ = priceProduct_;
+
+            in_eur.Text = fullPrice_.ToString();
+
+            // конвертация из евро в гривны
+            // конвертация из евро в гривны
+            var httpRequest = new HttpRequest();
+            httpRequest.ConnectTimeout = 15000;
+
+            // получим текущую дату минус один день
+            DateTime date = DateTime.Now.AddDays(-1);
+            string date_ = Convert.ToDateTime(date).ToString("yyyyMMdd");
+
+            // получим ответ от bank.gov.ua
+            string content = httpRequest.Send(HttpMethod.GET, new Uri("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=EUR&date=" + date_ + "")).ToString();
+            // получим курс евро относительно гривны
+            string kurs = regex_("<rate>(.*)</rate>", content, 1);
+
+            double in_uah_ = fullPrice_ * ConvertToDouble(kurs);
+            in_uah.Text = in_uah_.ToString();
+        }
     }
 }
