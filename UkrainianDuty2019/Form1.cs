@@ -133,9 +133,6 @@ namespace UkrainianDuty2019
             double kurs_in_double = priceProduct_ * ConvertToDouble(kurs_);
             priceProduct_ = (double)kurs_in_double;
 
-            // TODO: сделано для физ.лица
-            // добавить для юридического
-
             // 20% НДС
             // 10% Пошлина
             // Alipay 3%
