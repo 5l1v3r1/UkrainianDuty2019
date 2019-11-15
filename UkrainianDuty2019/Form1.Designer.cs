@@ -127,7 +127,7 @@
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.CalculateUsd);
             this.groupBox2.Controls.Add(this.priceProductUsd);
-            this.groupBox2.Location = new System.Drawing.Point(171, 15);
+            this.groupBox2.Location = new System.Drawing.Point(171, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(169, 130);
             this.groupBox2.TabIndex = 4;
