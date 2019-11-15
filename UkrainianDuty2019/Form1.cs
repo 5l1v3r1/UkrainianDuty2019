@@ -86,13 +86,15 @@ namespace UkrainianDuty2019
 
             // 20% НДС
             // 10% Пошлина
+            // Alipay 3%
+            // Торговый эквайринг 2%
             if (priceProduct_ >= 100)
             {
-                fullPrice_ = ((priceProduct_ / 100) * 10) + ((priceProduct_ / 100) * 20) + priceProduct_;
+                fullPrice_ = ((priceProduct_ / 100) * 10) + ((priceProduct_ / 100) * 20) + priceProduct_ + ((priceProduct_ / 100) * 3) + ((priceProduct_ / 100) * 2);
             }
             else
             {
-                fullPrice_ = priceProduct_;
+                fullPrice_ = priceProduct_ + ((priceProduct_ / 100) * 3) + ((priceProduct_ / 100) * 2);
             }
 
             in_eur.Text = fullPrice_.ToString();
@@ -136,13 +138,15 @@ namespace UkrainianDuty2019
 
             // 20% НДС
             // 10% Пошлина
+            // Alipay 3%
+            // Торговый эквайринг 2%
             if (priceProduct_ >= 100)
             {
-                fullPrice_ = ((priceProduct_ / 100) * 10) + ((priceProduct_ / 100) * 20) + priceProduct_;
+                fullPrice_ = ((priceProduct_ / 100) * 10) + ((priceProduct_ / 100) * 20) + priceProduct_ + ((priceProduct_ / 100) * 3) + ((priceProduct_ / 100) * 2);
             }
             else
             {
-                fullPrice_ = priceProduct_;
+                fullPrice_ = priceProduct_ + ((priceProduct_ / 100) * 3) + ((priceProduct_ / 100) * 2);
             }
 
             in_eur.Text = fullPrice_.ToString();
@@ -169,12 +173,15 @@ namespace UkrainianDuty2019
             priceProduct_ = Convert.ToDouble(ConvertToDouble(priceProduct.Text));
             // 20% НДС
             // 10% Пошлина
+            // Alipay 3%
+            // Торговый эквайринг 2%
             if (priceProduct_ >= 100)
             {
-                fullPrice_ = ((priceProduct_ / 100) * 10) + ((priceProduct_ / 100) * 20) + priceProduct_;
-            } else
+                fullPrice_ = ((priceProduct_ / 100) * 10) + ((priceProduct_ / 100) * 20) + priceProduct_ + ((priceProduct_ / 100) * 3) + ((priceProduct_ / 100) * 2);
+            }
+            else
             {
-                fullPrice_ = priceProduct_;
+                fullPrice_ = priceProduct_ + ((priceProduct_ / 100) * 3) + ((priceProduct_ / 100) * 2);
             }
 
             in_eur.Text = fullPrice_.ToString();
@@ -199,7 +206,18 @@ namespace UkrainianDuty2019
         private void Recalc_Click(object sender, EventArgs e)
         {
             priceProduct_ = Convert.ToDouble(ConvertToDouble(in_eur.Text));
-            fullPrice_ = priceProduct_;
+            // 20% НДС
+            // 10% Пошлина
+            // Alipay 3%
+            // Торговый эквайринг 2%
+            if (priceProduct_ >= 100)
+            {
+                fullPrice_ = ((priceProduct_ / 100) * 10) + ((priceProduct_ / 100) * 20) + priceProduct_ + ((priceProduct_ / 100) * 3) + ((priceProduct_ / 100) * 2);
+            }
+            else
+            {
+                fullPrice_ = priceProduct_ + ((priceProduct_ / 100) * 3) + ((priceProduct_ / 100) * 2);
+            }
 
             in_eur.Text = fullPrice_.ToString();
 
