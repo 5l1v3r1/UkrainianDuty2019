@@ -9,8 +9,8 @@ namespace UkrainianDuty2019
 {
     public partial class App : Form
     {
-        int priceProduct_;
-        int fullPrice_;
+        double priceProduct_;
+        double fullPrice_;
         public App()
         {
             InitializeComponent();
@@ -65,7 +65,7 @@ namespace UkrainianDuty2019
 
         private void CalculateUsd_Click(object sender, EventArgs e)
         {
-            priceProduct_ = Int32.Parse(priceProductUsd.Text);
+            priceProduct_ = Convert.ToDouble(ConvertToDouble(priceProductUsd.Text));
 
             // получим курс евро к доллару
             var httpRequest_ = new HttpRequest();
@@ -79,7 +79,7 @@ namespace UkrainianDuty2019
 
             // переведем доллары в евро
             double kurs_in_double = priceProduct_ * ConvertToDouble(kurs_);
-            priceProduct_ = (int)kurs_in_double;
+            priceProduct_ = (double)kurs_in_double;
 
             // TODO: сделано для физ.лица
             // добавить для юридического
@@ -115,7 +115,7 @@ namespace UkrainianDuty2019
         }
         private void CalculateCNY_Click(object sender, EventArgs e)
         {
-            priceProduct_ = Int32.Parse(priceProductCNY.Text);
+            priceProduct_ = Convert.ToDouble(ConvertToDouble(priceProductCNY.Text));
 
             // получим курс евро к доллару
             var httpRequest_ = new HttpRequest();
@@ -129,7 +129,7 @@ namespace UkrainianDuty2019
 
             // переведем доллары в евро
             double kurs_in_double = priceProduct_ * ConvertToDouble(kurs_);
-            priceProduct_ = (int)kurs_in_double;
+            priceProduct_ = (double)kurs_in_double;
 
             // TODO: сделано для физ.лица
             // добавить для юридического
@@ -166,7 +166,7 @@ namespace UkrainianDuty2019
 
         private void Calculate_Click(object sender, EventArgs e)
         {
-            priceProduct_ = Int32.Parse(priceProduct.Text);
+            priceProduct_ = Convert.ToDouble(ConvertToDouble(priceProduct.Text));
             // 20% НДС
             // 10% Пошлина
             if (priceProduct_ >= 100)
@@ -198,7 +198,7 @@ namespace UkrainianDuty2019
         }
         private void Recalc_Click(object sender, EventArgs e)
         {
-            priceProduct_ = Int32.Parse(in_eur.Text);
+            priceProduct_ = Convert.ToDouble(ConvertToDouble(in_eur.Text));
             fullPrice_ = priceProduct_;
 
             in_eur.Text = fullPrice_.ToString();
